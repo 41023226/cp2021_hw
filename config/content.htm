@@ -196,26 +196,32 @@ def clear_bd1(ev):
 # 利用 ace 中的 Editor 建立 Ace 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
 Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
 
-add1to100_url = "https://gist.githubusercontent.com/41023226/11caa1f2f608feb638a62be60e63b182/raw/f6e731bfb5dbb6df9fa5f0d1157b6f68034cad5d/1%2520add%2520to%2520100"
+class button2:
+    def __init__(self, url):
+        self.url = url
 
-# 從 gist 取得程式碼
-add_src = open(add1to100_url).read()
-def add(ev):
-    Ace2.editor.setValue(add_src)
-    Ace2.editor.scrollToRow(0)
-    Ace2.editor.gotoLine(0)
-    Ace2.run()
-# id 為 "add1to100" 的按鈕點按時, 執行 add 方法
-doc["add1to100"].bind('click', add)
-</script>
-</p>
+    # 記得加入 event 輸入變數
+    def do(self,ev):
+        Ace2.editor.setValue(open(self.url).read())
+        Ace2.editor.scrollToRow(0)
+        Ace2.editor.gotoLine(0)
+        Ace2.run()
+
+add1to100_url = "https://gist.githubusercontent.com/41023226/11caa1f2f608feb638a62be60e63b182/raw/f6e731bfb5dbb6df9fa5f0d1157b6f68034cad5d/1%2520add%2520to%2520100"
+add1to100 = button2(add1to100_url)
+doc["add1to100"].bind('click', add1to100.do)
+################################# p261 start 
+p261_url = "https://gist.githubusercontent.com/mdecourse/2f56974a40da7a218dbaef376a5b4ca4/raw/980606effcd29635307d6474718cd4a7ef016747/p261.py"
+p261 = button2(p261_url)
+doc["p261"].bind('click', p261.do)
+################################## p261 end
 <p><!-- add 1 to 100 結束--></p>
 <!-- editor1 開始 -->
 <p><!-- 用來顯示程式碼的 editor 區域 --></p>
 <div id="kw_editor1" style="width: 600px; height: 300px;"></div>
 <p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
 <p><!-- 存擋表單開始 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text">.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"></form>
 <p><!-- 存擋表單結束 --></p>
 <p></p>
 <p><!-- 執行與清除按鈕開始 --></p>
@@ -226,7 +232,7 @@ doc["add1to100"].bind('click', add)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
 <p><!-- Brython 程式執行的結果, 都以 brython_div 作為切入位置 --></p>
 <div id="brython_div1"></div>
-<!-- editor1 結束 --><hr/>
+<!-- editor1 結束 --><hr>
 <p>查驗輸入字串程式:</p>
 <p><button id="check_input">查驗輸入字串</button></p>
 <p><!-- 判斷輸入字串是否aA1$, 且至少 8 個字元-開始 -->
