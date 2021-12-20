@@ -212,7 +212,7 @@ run()
 <p>6. 請各組從 4.3 Exercises 中選擇一個題目製作為頁面中的按鈕 (button).</p>
 <p>無 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API">Canvas</a> 繪圖需求的程式, 可放在第一區, 而採 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API">Canvas</a> 繪圖的程式則可放入第二區.</p>
 <p>將 Gist 中的程式導入本頁面的程式段: <a href="/downloads/brython_button_prog.txt">brython_button_prog.txt</a>, 只要配合 button id 對應即可導入編輯區.</p>
-<p><button id="add1to100">1 add to 100</button><button id="p261">2.6-1</button></p>
+<p><button id="add1to100">1 add to 100</button><button id="p26a">2.6-a</button><button id="p26b">2.6-b</button><button id="p26c">2.6-c</button></p>
 <p>將 iterable 與 iterator <a href="https://home.gamer.com.tw/creationDetail.php?sn=4337438">相關說明</a>, 利用 Brython 與 Ace Editor 整理在這個頁面.</p>
 <!-- 導入 brython 程式庫 -->
 <p>
@@ -317,11 +317,21 @@ class button2:
 add1to100_url = "https://gist.githubusercontent.com/41023226/11caa1f2f608feb638a62be60e63b182/raw/f6e731bfb5dbb6df9fa5f0d1157b6f68034cad5d/1%2520add%2520to%2520100"
 add1to100 = button2(add1to100_url)
 doc["add1to100"].bind('click', add1to100.do)
-################################# p261 start 
-p261_url = "https://gist.githubusercontent.com/41023226/5d6ef348756dddff9a380c80e25cbad5/raw/1a92b377cfa20a6b2f1a914403fdeafb4ff02fe8/cp2021_w11"
-p261 = button2(p261_url)
-doc["p261"].bind('click', p261.do)
-################################## p261 end
+################################# p26a start 
+p26a_url = "https://gist.githubusercontent.com/41023226/0dbd25325ea6c3dd83f8f70818f1a861/raw/00c2b0410be50bb9acfd93dde8338049cc040ff1/2.6-a"
+p26a = button2(p26a_url)
+doc["p26a"].bind('click', p26a.do)
+################################## p26a end
+################################# p26b start 
+p26b_url = "https://gist.githubusercontent.com/41023226/c08c896580a39872cd3b378ca782251a/raw/16a1647d31753dca5188315f37a54311fc7a84ec/2.6-b"
+p26b = button2(p26b_url)
+doc["p26b"].bind('click', p26b.do)
+################################## p26b end
+################################# p26c start 
+p26c_url = "https://gist.githubusercontent.com/41023226/84ae8aa849eb2c1442f654f3d5a390ee/raw/6552dc64d50b29473abe0d9d63ef71ed7a092cec/2.6-c"
+p26c = button2(p26c_url)
+doc["p26c"].bind('click', p26c.do)
+################################## p26c end
 </script>
 </p>
 <p><!-- add 1 to 100 結束--></p>
