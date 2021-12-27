@@ -139,20 +139,13 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">HW2 << <a href='HW2.html'>Previous</a> <a href='HW3.html'>Next</a> >> HW3<br /><h1>W11 demo</h1>
-<h4>Examples</h4>
-<p><a href="./../downloads/w11demo.txt">w11demo.txt</a></p>
-<p>以下為 <a href="https://mde.tw/cp2021_hw/content/W11.html">https://mde.tw/cp2021_hw/content/W11.html</a> 按鈕範例.</p>
-<p>這個頁面 demo 如何在同一頁面下納入多個線上 Ace 編輯器與執行按鈕. (本動態頁面檔案 <a href="./../downloads/Examples.txt">Examples.txt</a>)</p>
-<p>1. 從 1 累加到 100 (以下列 button 呈現).</p>
-<p>2. 教科書 (<a href="https://link.springer.com/book/10.1007/978-981-10-3277-6">Programming with Python</a>) 2.6 Exercises, 共有三個題目, 請分別將程式製作為按鈕 (button).</p>
-<p>3. 請利用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas</a> 繪製 Fig. 3.7 的流程圖 (Flow Chart).</p>
-<p>4. 請利用 Canvas 繪製你所編寫"從 1 累加到 10"程式的流程圖 (Flow Chart).</p>
-<p>5. 請各班各組合力完成 3.5 Exercises 中的 14 個題目.</p>
-<p>6. 請各組從 4.3 Exercises 中選擇一個題目製作為頁面中的按鈕 (button).</p>
-<p>無 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API">Canvas</a> 繪圖需求的程式, 可放在第一區, 而採 <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Canvas_API">Canvas</a> 繪圖的程式則可放入第二區.</p>
-<p>將 Gist 中的程式導入本頁面的程式段: <a href="./../downloads/brython_button_prog.txt">brython_button_prog.txt</a>, 只要配合 button id 對應即可導入編輯區.</p>
-<p><button id="add1to100">1 add to 100</button><button id="p26a">2.6-a</button><button id="p26b">2.6-b</button><button id="p26c">2.6-c</button><button id="p26d">2.6-d</button><button id="p26e">2.6-e</button><button id="p26f">2.6-f</button></p>
+    <div id="tipue_search_content">Final Project << <a href='Final Project.html'>Previous</a> <br /><h1>41023226_final</h1>
+<p>初始:從1壘加到10</p>
+<p>1.<span>將左右碰撞移動的紅色方塊, 改為先移動到水平畫面中心點位置後, 接著上下碰撞移動</span></p>
+<p>2. 讓使用者可以利用按鈕啟動或中斷紅色方塊上下碰撞移動</p>
+<p>3.從 1 累加到 100</p>
+<p>4.教科書 (<a href="https://link.springer.com/book/10.1007/978-981-10-3277-6">Programming with Python</a>) 2.6 Exercises題目, 請分別將程式製作為按鈕 (button).</p>
+<p><button id="cube">cube</button><button id="bottoncube">cube-b</button><button id="add1to100">1 add to 100</button><button id="p26a">2.6-a</button><button id="p26b">2.6-b</button><button id="p26c">2.6-c</button><button id="p26d">2.6-d</button><button id="p26e">2.6-e</button><button id="p26f">2.6-f</button></p>
 <p>將 iterable 與 iterator <a href="https://home.gamer.com.tw/creationDetail.php?sn=4337438">相關說明</a>, 利用 Brython 與 Ace Editor 整理在這個頁面.</p>
 <!-- 導入 brython 程式庫 -->
 <p>
@@ -287,6 +280,16 @@ p26f_url = "https://gist.githubusercontent.com/41023226/42565ef68a50079657083bfb
 p26f = button2(p26f_url)
 doc["p26f"].bind('click', p26f.do)
 ################################## p26f end
+################################# cube start 
+cube_url = "https://gist.githubusercontent.com/41023226/0f153384b24b598e859edcbb7f68852a/raw/e015ff3f9571cc777ecf18e4dc64810d89a7d39c/cp2021%2520w1%2520(1)"
+cube = button2(cube_url)
+doc["cube"].bind('click', cube.do)
+################################## cube end
+################################# bottoncube start 
+bottoncube_url = "https://gist.githubusercontent.com/41023226/9f84f6db885be7f7f3df30226a38e8f6/raw/1bf9cecc0666910718ab300ed80449d2888a5204/cp2021%2520w1%2520(3)"
+bottoncube = button2(bottoncube_url)
+doc["bottoncube"].bind('click', bottoncube.do)
+################################## bottoncube end
 </script>
 </p>
 <p><!-- add 1 to 100 結束--></p>
@@ -405,7 +408,7 @@ doc['clear_bd2'].bind('click', clear_bd2)
   };
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
-<p></p><br />HW2 << <a href='HW2.html'>Previous</a> <a href='HW3.html'>Next</a> >> HW3</div>
+<p></p><br />Final Project << <a href='Final Project.html'>Previous</a> </div>
         
     <!-- footer -->
       <div class="container">

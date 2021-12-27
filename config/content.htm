@@ -516,3 +516,273 @@ doc['clear_bd2'].bind('click', clear_bd2)
 <p style="padding-left: 30px;"><a href="https://github.com/leereilly/games">https://github.com/leereilly/games</a></p>
 <p style="padding-left: 30px;"><a href="https://bmsleight.github.io/brython-blocks/">https://bmsleight.github.io/brython-blocks/</a></p>
 <p style="padding-left: 60px;"><a href="https://github.com/mdecourse/brython-blocks">https://github.com/mdecourse/brython-blocks</a></p>
+<h2>41023226_final</h2>
+<p>初始:從1壘加到10</p>
+<p>1.<span>將左右碰撞移動的紅色方塊, 改為先移動到水平畫面中心點位置後, 接著上下碰撞移動</span></p>
+<p>2. 讓使用者可以利用按鈕啟動或中斷紅色方塊上下碰撞移動</p>
+<p>3.從 1 累加到 100</p>
+<p>4.教科書 (<a href="https://link.springer.com/book/10.1007/978-981-10-3277-6">Programming with Python</a>) 2.6 Exercises題目, 請分別將程式製作為按鈕 (button).</p>
+<p><button id="cube">cube</button><button id="bottoncube">cube-b</button><button id="add1to100">1 add to 100</button><button id="p26a">2.6-a</button><button id="p26b">2.6-b</button><button id="p26c">2.6-c</button><button id="p26d">2.6-d</button><button id="p26e">2.6-e</button><button id="p26f">2.6-f</button></p>
+<p>將 iterable 與 iterator <a href="https://home.gamer.com.tw/creationDetail.php?sn=4337438">相關說明</a>, 利用 Brython 與 Ace Editor 整理在這個頁面.</p>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="/static/ace/ace.js" type="text/javascript"></script>
+<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
+<!-- 內建程式 1 ####################################### 內建程式 1 開始-->
+<p>
+<script type="text/python3">
+from browser import document as doc
+import ace
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+Ace1 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+# 從 gist 取出程式碼後, 放入 editor 作為 default 程式
+def run1():
+    # 利用 get 取下 src 變數值
+    try:
+        url = doc.query["src"]
+    except:
+        url = "https://gist.githubusercontent.com/41023226/3eecdaab63826f23fc59577b61f05a1e/raw/9025db3d3f46fbad66ca7964626a6559cd04ac79/1%2520add%2520to%252010"
+    prog = open(url).read()
+
+    # 將程式載入編輯區
+    Ace1.editor.setValue(prog)
+    Ace1.editor.scrollToRow(0)
+    Ace1.editor.gotoLine(0)
+    # 直接執行程式
+    #ns = {'__name__':'__main__'}
+    #exec(prog, ns)
+    # 按下 run 按鈕
+    Ace1.run()
+
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
+doc['kw_run1'].bind('click', Ace1.run)
+doc['kw_show_console1'].bind('click', Ace1.show_console)
+doc['kw_clear_console1'].bind('click', Ace1.clear_console)
+doc['clear_bd1'].bind('click', clear_bd1)
+# 呼叫函式執行
+run1()
+</script>
+</p>
+<!-- 內建程式 1 ####################################### 內建程式 1 結束-->
+<p></p>
+<!-- button 程式 1 ####################################### button 程式 1 開始-->
+<p><!-- add 1 to 100 開始 -->
+<script type="text/python3">
+from browser import document as doc
+import ace
+
+# 清除畫布
+def clear_bd1(ev):
+    bd = doc["brython_div1"]
+    bd.clear()
+
+# 利用 ace 中的 Editor 建立 Ace 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
+Ace2 = ace.Editor(editor_id="kw_editor1", console_id="kw_console1", container_id="kw__container1", storage_id="kw_py_src1" )
+
+class button2:
+    def __init__(self, url):
+        self.url = url
+
+    # 記得加入 event 輸入變數
+    def do(self,ev):
+        Ace2.editor.setValue(open(self.url).read())
+        Ace2.editor.scrollToRow(0)
+        Ace2.editor.gotoLine(0)
+        Ace2.run()
+
+add1to100_url = "https://gist.githubusercontent.com/41023226/11caa1f2f608feb638a62be60e63b182/raw/f6e731bfb5dbb6df9fa5f0d1157b6f68034cad5d/1%2520add%2520to%2520100"
+add1to100 = button2(add1to100_url)
+doc["add1to100"].bind('click', add1to100.do)
+################################# p26a start 
+p26a_url = "https://gist.githubusercontent.com/41023226/0dbd25325ea6c3dd83f8f70818f1a861/raw/00c2b0410be50bb9acfd93dde8338049cc040ff1/2.6-a"
+p26a = button2(p26a_url)
+doc["p26a"].bind('click', p26a.do)
+################################## p26a end
+################################# p26b start 
+p26b_url = "https://gist.githubusercontent.com/41023226/c08c896580a39872cd3b378ca782251a/raw/16a1647d31753dca5188315f37a54311fc7a84ec/2.6-b"
+p26b = button2(p26b_url)
+doc["p26b"].bind('click', p26b.do)
+################################## p26b end
+################################# p26c start 
+p26c_url = "https://gist.githubusercontent.com/41023226/84ae8aa849eb2c1442f654f3d5a390ee/raw/6552dc64d50b29473abe0d9d63ef71ed7a092cec/2.6-c"
+p26c = button2(p26c_url)
+doc["p26c"].bind('click', p26c.do)
+################################## p26c end
+################################# p26d start 
+p26d_url = "https://gist.githubusercontent.com/41023226/9b5f1647751fe92e46314ed1139b8a31/raw/f5d523e6fc123e022248b100d1cceda402d53975/2.6-d"
+p26d = button2(p26d_url)
+doc["p26d"].bind('click', p26d.do)
+################################## p26d end
+################################# p26e start 
+p26e_url = "https://gist.githubusercontent.com/41023226/b6573de827e561245b89444dc79748f3/raw/473aa72357cd626553542fa532ba64732331e3cd/2.6-e"
+p26e = button2(p26e_url)
+doc["p26e"].bind('click', p26e.do)
+################################## p26e end
+################################# p26f start 
+p26f_url = "https://gist.githubusercontent.com/41023226/42565ef68a50079657083bfb1df74884/raw/a6ffa21a479a71f69b33db3a730b08659fe9f61b/2.6-f"
+p26f = button2(p26f_url)
+doc["p26f"].bind('click', p26f.do)
+################################## p26f end
+################################# cube start 
+cube_url = "https://gist.githubusercontent.com/41023226/0f153384b24b598e859edcbb7f68852a/raw/e015ff3f9571cc777ecf18e4dc64810d89a7d39c/cp2021%2520w1%2520(1)"
+cube = button2(cube_url)
+doc["cube"].bind('click', cube.do)
+################################## cube end
+################################# bottoncube start 
+bottoncube_url = "https://gist.githubusercontent.com/41023226/9f84f6db885be7f7f3df30226a38e8f6/raw/1bf9cecc0666910718ab300ed80449d2888a5204/cp2021%2520w1%2520(3)"
+bottoncube = button2(bottoncube_url)
+doc["bottoncube"].bind('click', bottoncube.do)
+################################## bottoncube end
+</script>
+</p>
+<p><!-- add 1 to 100 結束--></p>
+<!-- editor1 開始 -->
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor1" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<p><!-- 存擋表單開始 --></p>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src1', 'kw_filename1');" type="submit" value="Save"/></form>
+<p><!-- 存擋表單結束 --></p>
+<p></p>
+<p><!-- 執行與清除按鈕開始 --></p>
+<p><button id="kw_run1">Run</button> <button id="kw_show_console1">Output</button> <button id="kw_clear_console1">清除輸出區</button><button id="clear_bd1">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p><!-- 執行與清除按鈕結束 --></p>
+<p></p>
+<p><!-- 程式執行 ouput 區 --></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console1"></textarea></div>
+<p><!-- Brython 程式執行的結果, 都以 brython_div 作為切入位置 --></p>
+<div id="brython_div1"></div>
+<p><!-- editor1 結束 --></p>
+<hr/>
+<p><!-- button 程式 1 ####################################### button 程式 1 結束--></p>
+<p></p>
+<p><!-- button 程式 2 ####################################### button 程式 2 開始--></p>
+<p>第二編輯區程式 (<a href="https://gist.github.com/mdecourse/fd325f7ff3fb71a9653bf156fe53d7dc">編輯</a> Snake 原始碼):</p>
+<p><button id="check_input">查驗輸入字串</button><button id="snake">Snake</button><button id="snake2">Snake2</button></p>
+<p><!-- 判斷輸入字串是否aA1$, 且至少 8 個字元-開始 -->
+<script type="text/python3">
+from browser import document as doc
+import ace
+
+# 清除畫布
+def clear_bd2(ev):
+    bd = doc["brython_div2"]
+    bd.clear()
+
+# 利用 ace 中的 Editor 建立 Ace 物件, 其中的輸入變數分別對應到頁面中的編輯區物件
+Ace3 = ace.Editor(editor_id="kw_editor2", console_id="kw_console2", container_id="kw__container2", storage_id="kw_py_src2" )
+
+check_str_url = "https://gist.githubusercontent.com/mdecourse/0229a8a017091476a79700b8a190f185/raw/56dc6a6b8eaa05b80994ac6f08ebc9326330be43/check_str_input_content_1.py"
+# 從 gist 取得程式碼
+check_src = open(check_str_url).read()
+
+def check_input(ev):
+    Ace3.editor.setValue(check_src)
+    Ace3.editor.scrollToRow(0)
+    Ace3.editor.gotoLine(0)
+    #Ace.run()
+
+# id 為 "check_input" 的按鈕點按時, 執行 check_input 方法
+doc["check_input"].bind('click', check_input)
+###################################### snake 開始
+# 將 Ace3 編輯器對應的 button 寫為 class
+class button3:
+    def __init__(self, url):
+        self.url = url
+
+    # 記得加入 event 輸入變數
+    def do(self,ev):
+        Ace3.editor.setValue(open(self.url).read())
+        Ace3.editor.scrollToRow(0)
+        Ace3.editor.gotoLine(0)
+        Ace3.run()
+
+# 利用 button class 建立案例
+# for snake
+snake_url = "https://gist.githubusercontent.com/mdecourse/d55158478f4f8fcbfedd455f8be8c7b6/raw/706bb9583d97f2e4b8e9027e686489e28f43cad9/brython_snake.py"
+snake = button3(snake_url)
+doc["snake"].bind("click", snake.do)
+# for snake2
+snake2_url = "https://gist.githubusercontent.com/mdecourse/d55158478f4f8fcbfedd455f8be8c7b6/raw/706bb9583d97f2e4b8e9027e686489e28f43cad9/snake_pathfinding_ai_curses.py"
+snake2 = button3(snake2_url)
+doc["snake2"].bind("click", snake2.do)
+###################################### snake 結束
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定 - 第二編輯區 Ace3 共用
+doc['kw_run2'].bind('click', Ace3.run)
+doc['kw_show_console2'].bind('click', Ace3.show_console)
+doc['kw_clear_console2'].bind('click', Ace3.clear_console)
+doc['clear_bd2'].bind('click', clear_bd2)
+</script>
+</p>
+<p><!-- 判斷輸入字串是否aA1$, 且至少 8 個字元-結束--></p>
+<p><!-- editor2 開始 --></p>
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor2" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<p><!-- 存擋表單開始 --></p>
+<form><label>Filename: <input id="kw_filename2" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src2', 'kw_filename2');" type="submit" value="Save"/></form>
+<p><!-- 存擋表單結束 --></p>
+<p></p>
+<p><!-- 執行與清除按鈕開始 --></p>
+<p><button id="kw_run2">Run</button> <button id="kw_show_console2">Output</button> <button id="kw_clear_console2">清除輸出區</button><button id="clear_bd2">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<p><!-- 執行與清除按鈕結束 --></p>
+<p></p>
+<p><!-- 程式執行 ouput 區 --></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console2"></textarea></div>
+<p><!-- Brython 程式執行的結果, 都以 brython_div 作為切入位置 --></p>
+<div id="brython_div2"></div>
+<p><!-- editor2 結束 --></p>
+<p></p>
+<p><!-- button 程式 2 ####################################### button 程式 2  結束--></p>
+<p><!-- 導入 gearUtils-0.9.js Cango 齒輪繪圖程式庫 -->
+<script src="https://mde.tw/cp2021/cmsimde/static/Cango-24v03-min.js"></script>
+<script src="https://mde.tw/cp2021/cmsimde/static/gearUtils-09.js"></script>
+<script src="https://mde.tw/cp2021/cmsimde/static/SVGpathUtils-6v03-min.js"></script>
+<script src="https://mde.tw/cp2021/cmsimde/static/sylvester.js"></script>
+<script src="https://mde.tw/cp2021/cmsimde/static/PrairieDraw.js"></script>
+</p>
+<h4>References:</h4>
+<p style="padding-left: 30px;"><a href="https://zerojudge.tw/">https://zerojudge.tw/</a></p>
+<p style="padding-left: 30px;"><a href="https://shaform.com/csdream/docs/problem-solving/">https://shaform.com/csdream/docs/problem-solving/</a></p>
+<p style="padding-left: 30px;"><a href="https://onlinejudge.org/">https://onlinejudge.org/</a></p>
+<!-- <script>
+  MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\(', '\)']]}
+  };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>-->
+<p></p>
